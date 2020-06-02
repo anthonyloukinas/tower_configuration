@@ -9,5 +9,13 @@ jobs:
       - name: build the stack
         run: cd docker && docker-compose up -d
 
-      - name: test
-        run: echo 'running'
+      - name: list running containers
+        run: docker ps -a
+
+      - name: sleep
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '90s'
+
+      - name: test awx connectivity
+        run: docker exec web curl -I web:8052/api/v2/ping
