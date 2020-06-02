@@ -1,0 +1,13 @@
+name: docker-compose
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: build the stack
+        run: cd docker && docker-compose up -d
+
+      - name: test
+        run: echo 'running'
