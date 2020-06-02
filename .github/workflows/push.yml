@@ -18,4 +18,4 @@ jobs:
           time: '90s'
 
       - name: test awx connectivity
-        run: docker exec web curl -I web:8052/api/v2/ping
+        run: docker exec awx_web curl -I web:8052/api/v2/ping
