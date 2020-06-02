@@ -22,12 +22,9 @@ jobs:
         with:
           time: '90s'
 
-      - name: "List processes"
-        run: docker exec awx_web hostname && ps auxwwf
-
       - name: "Test AWX connectivity"
         #run: docker exec awx_web curl -I localhost:8052/api/v2/ping
-        run: curl -I awx_web:8052/api/v2/ping
+        run: curl -I localhost/api/v2/ping
 
       - name: "Perform playbook tests"
         run: echo "Add playbook tests here"
