@@ -11,9 +11,7 @@ jobs:
       - name: "Checkout Project"
         uses: actions/checkout@v2
         with:
-          fetch-depth: 2
-
-      - run: git checkout devel
+          ref: devel
 
       - name: Set up Python 3.8
         uses: actions/setup-python@v1
