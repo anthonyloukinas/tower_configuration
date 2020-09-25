@@ -1,0 +1,30 @@
+name: docker-compose
+
+on: [push, pull_request]
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Checkout Project"
+        uses: actions/checkout@v2
+
+      - name: "Build AWX stack"
+        run: cd docker && docker-compose up -d
+
+      - name: "List all running containers"
+        run: docker ps -a
+
+      - name: "Wait for AWX to be available"
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '90s'
+
+      - name: "Test AWX connectivity"
+        #run: docker exec awx_web curl -I localhost:8052/api/v2/ping
+        run: curl -I localhost/api/v2/ping
+
+      - name: "Perform playbook tests"
+        run: echo "Add playbook tests here"
