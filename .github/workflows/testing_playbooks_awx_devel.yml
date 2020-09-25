@@ -28,10 +28,10 @@ jobs:
       - name: "List all running containers"
         run: docker ps -a
 
-      - name: "Wait for AWX to be available"
-        uses: jakejarvis/wait-action@master
+      - name: Wait / Sleep
+        uses: jakejarvis/wait-action@v0.1.0
         with:
-          time: '90s'
+          time: '90s'          
 
       - name: "Test AWX connectivity"
         #run: docker exec awx_web curl -I localhost:8052/api/v2/ping
