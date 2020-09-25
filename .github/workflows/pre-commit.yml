@@ -12,6 +12,7 @@ jobs:
     - uses: actions/setup-python@v2
     - name: Install Collections
       run: |
+        sudo apt install software-properties-common
         sudo -H pip3 install ansible
         ansible-galaxy collection install -f -r .github/collections/requirements.yml
     - name: Hack pre-commit
