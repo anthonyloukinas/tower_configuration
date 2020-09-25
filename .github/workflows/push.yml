@@ -1,6 +1,6 @@
 name: docker-compose
 
-on: [push, pull_request]
+on: [never]
 
 jobs:
   test:
