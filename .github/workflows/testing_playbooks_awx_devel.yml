@@ -10,14 +10,16 @@ jobs:
     steps:
       - name: "Checkout Project"
         uses: actions/checkout@v2
-
-      - name: "Build AWX stack"
-        run: cd .github/docker && docker-compose up -d
+        with:
+          ref: devel
 
       - name: Set up Python 3.8
         uses: actions/setup-python@v1
         with:
           python-version: 3.8
+
+      - name: "Clone AWX"
+        run: cd .github && git clone https://github.com/ansible/awx.git
 
       - name: "Install dependencies"
         run: pip install -r .github/requirements.txt
@@ -25,21 +27,16 @@ jobs:
       - name: Display Versions
         run: which python && pip --version && ansible --version
 
-      - name: "List all running containers"
-        run: docker ps -a
+      - name: "Build AWX stack"
+        run: cd .github/awx/installer && ansible-playbook -i inventory install.yml -e create_preload_data=false
 
-      - name: Wait / Sleep
-        uses: jakejarvis/wait-action@v0.1.0
+      - name: "Wait for awx to be alive"
+        uses: nev7n/wait_for_response@v1
         with:
-          time: '120s'
-
-      - name: "Test AWX connectivity"
-        #run: curl -I localhost/api/v2/ping
-        uses: nick-invision/retry@v1
-        with:
-          timeout_minutes: 10
-          max_attempts: 30
-          command: docker exec awx_web curl -I localhost:80/api/v2/ping
+          url: 'http://localhost/api/v2/ping'
+          responseCode: 200
+          timeout: 600000  # Wait max 10 mins for response
+          interval: 3000
 
       - name: "Install Galaxy dependencies"
         run: ansible-galaxy collection install -r .github/collections/requirements_awx_devel.yml
