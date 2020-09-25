@@ -31,7 +31,7 @@ jobs:
       - name: Wait / Sleep
         uses: jakejarvis/wait-action@v0.1.0
         with:
-          time: '90s'
+          time: '120s'
 
       - name: "Test AWX connectivity"
         run: docker exec awx_web curl -I localhost:8052/api/v2/ping
