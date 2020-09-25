@@ -1,6 +1,6 @@
 # This workflow action will run pre-commit, which will execute ansible and yaml linting
 # See .github/workflow-config/.pre-commit-config.yml for what hooks are executed
-name: Yaml and Ansible Lint
+name: Yaml and Ansible Lint AWX Devel
 
 on: [push, pull_request]
 

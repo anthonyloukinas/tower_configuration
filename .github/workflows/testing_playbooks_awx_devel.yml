@@ -1,4 +1,4 @@
-name: Run Test Playbooks
+name: Run Test Playbooks AWX Devel
 
 on: [push, pull_request]
 
