@@ -40,7 +40,7 @@ jobs:
           interval: 3000
 
       - name: "Install Galaxy dependencies"
-        run: ansible-galaxy collection install -r .github/collections/requirements.yml
+        run: ansible-galaxy collection install -r .github/collections/requirements_awx_devel.yml
 
       - name: Wait / Sleep
         uses: jakejarvis/wait-action@v0.1.0
