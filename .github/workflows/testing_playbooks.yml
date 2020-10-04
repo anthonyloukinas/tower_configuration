@@ -21,8 +21,8 @@ jobs:
       - name: "Clone AWX"
         run: cd .github && git clone https://github.com/ansible/awx.git
 
-      - name: "Clone AWX"
-        run: cd .github/awx/ && git checkout tags/14.1.0 -b devel
+      - name: "Checkout 14.1 version of AWX"
+        run: cd .github/awx/ && git checkout 14.1.0
 
       - name: "Install dependencies"
         run: pip install -r .github/requirements.txt
