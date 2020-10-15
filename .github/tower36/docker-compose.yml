@@ -25,7 +25,7 @@
     task:
       image: registry.redhat.io/ansible-tower-36/ansible-tower
       container_name: awx_task
-      command: /usr/bin/launch_awx_task.sh
+      command: /usr/bin/launch_awx.sh
       depends_on:
         - rabbitmq
         - memcached
@@ -40,6 +40,7 @@
         - "./assets/environment.sh:/etc/tower/conf.d/environment.sh"
         - "./assets/credentials.py:/etc/tower/conf.d/credentials.py"
         - "./assets/settings.py:/etc/tower/settings.py"
+        - "./assets/launch_awx.sh:/usr/bin/launch_awx.sh"
   
     rabbitmq:
       image: ansible/awx_rabbitmq:3.7.4
