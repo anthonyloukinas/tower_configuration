@@ -25,6 +25,9 @@ jobs:
         with:
           time: '60s'
 
+      - name: Debug AWX Web container
+        run: docker logs awx_web
+        
       - name: "Wait for awx to be alive"
         uses: nev7n/wait_for_response@v1
         with:
