@@ -1,4 +1,4 @@
-name: Run Test Playbooks Tower
+name: Run Test Playbooks Tower 3.6
 
 on: [push, pull_request]
 
@@ -17,9 +17,8 @@ jobs:
           username: ${{ secrets.RegistryUsername }}
           password: ${{ secrets.RegistryPassword }}
 
-
       - name: "Build AWX stack"
-        run: cd .github/tower_docker && docker-compose up -d
+        run: cd .github/tower36 && docker-compose up -d
 
       - name: Wait / Sleep
         uses: jakejarvis/wait-action@v0.1.0
